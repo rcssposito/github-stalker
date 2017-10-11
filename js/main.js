@@ -1,7 +1,7 @@
 
 //receber valor inputado
 (function (){
-    $('#user').on('focusout', function(e){
+    $('#user').on('keyup', function(e){
         let username = e.target.value;
         
 //realizar o request para o github
@@ -40,14 +40,17 @@ $.ajax({
       
     $.each(repos, function(index, repo){
        $("#repos").append(`
-<div>
-<label>${repo.name}</label>
-<label>${repo.full_name}</label>
-<label>Stars: ${repo.stargazers_count}</label>
-<label>Linguagem ${repo.language}</label>
-<label>Open Issues ${repo.open_issues_count}</label>
-<a href="${repo.html_url}"><button>Repo URL </button><a/>
+
+<ul id="cards">
+<div class="infos">
+<li ><label class="label">${repo.name}</label></li>
+<li ><label class="label">${repo.full_name}</label></li>
+<li ><label class="label">Stars: ${repo.stargazers_count}</label></li>
+<li ><label class="label">Linguagem ${repo.language}</label></li>
+<li ><label class="label">Open Issues ${repo.open_issues_count}</label></li>
+<li ><a href="${repo.html_url}"><button>Repo URL </button><a/></li>
 </div>
+</ul>
 `)
     })
 });//fim da função repo 
