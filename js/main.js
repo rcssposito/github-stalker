@@ -33,9 +33,9 @@ $.ajax({
      })
  
     repos.sort(function(a,b) {
-    return a.radios < b.radios ? 1 : a.radios > b.radios ? -1 : 0;
+    return a.stargazers_count < b.stargazers_count ? 1 : a.stargazers_count > b.stargazers_count ? -1 : 0;
 
-});   
+})   
   
       
     $.each(repos, function(index, repo){
@@ -43,12 +43,12 @@ $.ajax({
 
 <ul id="cards">
 <div class="infos">
-<li ><label class="label">${repo.name}</label></li>
-<li ><label class="label">${repo.full_name}</label></li>
+<li ><label class="label">Name: ${repo.name}</label></li>
+<li ><label class="label">Owner/Repo: ${repo.full_name}</label></li>
 <li ><label class="label">Stars: ${repo.stargazers_count}</label></li>
 <li ><label class="label">Linguagem ${repo.language}</label></li>
 <li ><label class="label">Open Issues ${repo.open_issues_count}</label></li>
-<li ><a href="${repo.html_url}"><button>Repo URL </button><a/></li>
+<li ><a href="${repo.html_url}" target="parent"><button>Repo URL </button><a/></li>
 </div>
 </ul>
 `)
