@@ -92,7 +92,7 @@ p.title{
 
 /*div para receber o array*/
 #repos {
-    height:100%;
+    height:auto;
     width:100%;
 }
 
@@ -119,6 +119,13 @@ p.title{
 .label {
     display:block; 
     margin: 5px; 
+}
+
+.label:hover {
+    background-color: rgba(132, 91, 173, 0.3);
+    transition: background-color 0.7s;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 button{ 

@@ -1,6 +1,7 @@
 
-//receber valor inputado
+//receber valor inputado pela barra de texto
 (function (){
+    
     $('#user').on('keyup', function(e){
         let username = e.target.value;
         
@@ -20,26 +21,43 @@ $.ajax({
     data:{
         client_id:'1dc65264b4cd3aada7ee',
         client_secret:'891c7f6a077a55aa76f80c8ec09b94d908fe967c',
-        
     }
         
 })
     //exibir array com repositórios que o usuário deu star 
 .done(function(repos){
-   
-    $("input[name=filter]:radio").on('click', function (filter){
-        let radios = filter.target.value;
-         console.log(radios);
-     })
- 
-    repos.sort(function(a,b) {
-    return a.stargazers_count < b.stargazers_count ? 1 : a.stargazers_count > b.stargazers_count ? -1 : 0;
 
-})   
-  
-      
-    $.each(repos, function(index, repo){
-       $("#repos").append(`
+    $("input[name=filter]").change(function (){//recer o parâmetro "value" dos radios
+        var radios = ($(this).attr("value"));
+
+    if(radios =="name"){//provávelmente essa não é a melhor foram de fazer isso, mas foi a unica que der certo
+
+        /*eu compreendo que json é nada mais que um array, logo, eu crio um método sort para ordenar ele, mas, o grande problema aqui
+        é que eu não consigo setar o valor de um radio na variável e ler ela nesse método sort. Se eu conseguir isso, da pra reduzir 
+        esse código */
+        
+        repos.sort(function(a,b) {
+        return a.name < b.name ? 1 : a.name > b.name ? -1 : 0;
+  })
+    }
+    if(radios =="stargazers_count"){
+
+        repos.sort(function(a,b) {
+        return a.stargazers_count < b.stargazers_count ? 1 : a.stargazers_count > b.stargazers_count ? -1 : 0;
+  })     
+    }
+    if(radios =="open_issues_count"){
+
+        repos.sort(function(a,b) {
+        return a.open_issues_count < b.open_issues_count ? 1 : a.open_issues_count > b.open_issues_count ? -1 : 0;
+  })
+    }
+        
+     $("#repos").empty() //método para apagar os dados obtidos préviamente
+    
+        $.each(repos, function(index, repo){ //função para receber os dados do array e gravar no html
+               
+            $("#repos").append(`
 
 <ul id="cards">
 <div class="infos">
@@ -52,7 +70,8 @@ $.ajax({
 </div>
 </ul>
 `)
-    })
+    })//fim da função each
+    })//fim da função para receber os métodos do array       
 });//fim da função repo 
     
     $('#container').html(`
