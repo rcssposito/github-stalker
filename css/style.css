@@ -42,13 +42,14 @@ p.title{
                                                     /* Configuração para a caixa de filtros de pesquisa */
 
 #form{
-    width:100%;
+    width:auto;
+    height:auto;
 }
 
 /*fieldset*/
 #filters {
+    width: 18%;
     margin: 3% auto;
-    width: 25%;
     border-radius:5px;
 }
 
@@ -56,6 +57,7 @@ p.title{
 .radio{
     cursor: pointer;
     vertical-align: top;
+    
 
 }
 
